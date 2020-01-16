@@ -48,24 +48,18 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
-    //base
-    implementation rootProject.ext.dependencies["appcompat-v7"]
-    implementation rootProject.ext.dependencies["cardview-v7"]
-    implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["constraint-layout"]
-
-    //UI测试
-    androidTestImplementation(rootProject.ext.dependencies["espresso-core"]) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    implementation(rootProject.ext.dependencies["espresso-idling-resource"]) {
-        exclude module: 'support-annotations'
-    }
-
-    implementation 'com.meituan.android.walle:library:1.1.6'
+    //多渠道打包
+    implementation rootProject.ext.dependencies["walle"]
+    implementation project(':base')
 }
 
 walle {

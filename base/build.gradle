@@ -1,0 +1,88 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+
+        debug {
+            buildConfigField "String", "HOST_ADDRESS", "\"http://wanandroid.com/\""
+            buildConfigField "boolean", "DEBUG_MODE", "true";
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            proguardFiles 'proguard.cfg'
+            buildConfigField "String", "HOST_ADDRESS", "\"https://api.quanmin110.com/\""
+            buildConfigField "boolean", "DEBUG_MODE", "false";
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    //base
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["cardview-v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["constraint-layout"]
+
+    //UI测试
+    androidTestImplementation(rootProject.ext.dependencies["espresso-core"]) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    implementation(rootProject.ext.dependencies["espresso-idling-resource"]) {
+        exclude module: 'support-annotations'
+    }
+
+
+
+    //net
+    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["logging-interceptor"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava2"]
+    api rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
+    api rootProject.ext.dependencies["retrofit-url-manager"]
+
+    //rx
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxbinding"]
+    api rootProject.ext.dependencies["rxpermissions"]
+
+    api rootProject.ext.dependencies["multidex"]
+
+    // rx系列
+    api 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
+    api "com.trello.rxlifecycle2:rxlifecycle-components:2.2.1"
+    api 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+
+    //easypermissions
+    api 'pub.devrel:easypermissions:1.0.0'
+    // log拦截器
+    //日志打印
+    api('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
+}

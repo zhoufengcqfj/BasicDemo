@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">base</string>
+    <string name="base_cancel">Cancel</string>
+    <string name="base_ok">OK</string>
+    <string name="base_off_text">OFF</string>
+
+    <string name="base_permissions_required">您禁止了权限</string>
+    <string name="base_permissions_open_settings">请去设置界面打开权限</string>
+
+
+    <string name="base_rationale_ask_camera_permission">The feature you are using requires access to your camera.</string>
+    <string name="base_rationale_ask_storage_permission">Allow Roza to read the content on your storage?</string>
+
+    <!-- date -->
+    <string name="base_start_in">Starts In</string>
+    <string name="base_just_now">just now</string>
+    <string name="base_min_ago">MIN AGO</string>
+    <string name="base_h_ago">H AGO</string>
+    <string name="base_d_ago">D AGO</string>
+    <string name="base_w_ago">W AGO</string>
+    <string name="base_days_left">%1$s days left</string>
+    <string name="base_one_day_left">1 day left</string>
+</resources>
